@@ -49,7 +49,8 @@ const Home = () => {
         });
     };
 
-    const TextChanger = () => {
+    // Componente pai que gerencia o estado
+    const TextManager = () => {
         const [text, setText] = useState("");
         const [index, setIndex] = useState(0);
         const phrases = [
@@ -84,6 +85,11 @@ const Home = () => {
             return () => clearTimeout(timeoutId);
         }, [text, index, phrases]);
 
+        return <TextChanger text={text} />;
+    };
+
+    // Componente filho que apenas exibe o texto
+    const TextChanger = ({ text }) => {
         return <NameText>{text}</NameText>;
     };
 
@@ -117,7 +123,7 @@ const Home = () => {
                 </ContainerImage>
 
                 <ContainerName>
-                    <TextChanger />
+                    <TextManager />
                     <ContainerButtons>
                         <ButtonProfile
                             onClick={() =>
