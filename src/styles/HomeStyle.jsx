@@ -1,5 +1,16 @@
 import styled, { keyframes } from "styled-components";
 
+const FadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 const GradientAnimation = keyframes`
   0% {
     background-position: 0% 50%;
@@ -12,281 +23,381 @@ const GradientAnimation = keyframes`
   }
 `;
 
-export const MainContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+export const MainContainer = styled.main`
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+  color: #ffffff;
+  animation: ${FadeIn} 0.8s ease-out;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const HomeContent = styled.div`
-    height: auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    background-color: #4f5df78a;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+`;
+
+export const ProfileSection = styled.section`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width: 480px) {
+    gap: 1.5rem;
+  }
 `;
 
 export const ContainerImage = styled.div`
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: linear-gradient(45deg, #784ff7, #4fc7f7);
-    background-size: 200% 200%;
-    transition: 1s;
-    animation: ${GradientAnimation} 4s ease infinite;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #4F92F7;
+  box-shadow: 0 0 20px rgba(79, 146, 247, 0.3);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 150px;
+  }
+
+  @media (max-width: 480px) {
+    width: 120px;
+    height: 120px;
+  }
 `;
 
 export const ImageProfile = styled.img`
-    width: 175px;
-    border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const SocialButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 export const LinkedinButton = styled.a`
-    text-decoration: none;
-    color: var(--primary-text-color);
-    gap: 0.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2rem;
-    width: 150px;
-    height: 35px;
-    background-color: var(--senary-color);
-    margin-top: 24%;
-    cursor: pointer;
-    position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: #0077b5;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  white-space: nowrap;
 
-    &:hover {
-        background-color: #0a66c2;
-    }
-`;
-export const GithubButton = styled.a`
-    text-decoration: none;
-    color: var(--primary-text-color);
-    gap: 0.4rem;
-    display: flex;
-    align-items: center;
+  &:hover {
+    background: #006399;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
     justify-content: center;
-    border-radius: 2rem;
-    width: 150px;
-    height: 35px;
-    background-color: var(--tertiary-color);
-    margin-top: 18%;
-    cursor: pointer;
-    position: absolute;
-    &:hover {
-        background-color: #0d1117;
-    }
+  }
+`;
+
+export const GithubButton = styled(LinkedinButton)`
+  background: #333;
+
+  &:hover {
+    background: #24292e;
+  }
 `;
 
 export const ContainerName = styled.div`
-    margin: 1rem;
+  text-align: center;
+  width: 100%;
 `;
 
 export const NameText = styled.h1`
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #4F92F7, #784FF7);
+  background-size: 200% 200%;
+  animation: ${GradientAnimation} 3s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+
+  @media (max-width: 768px) {
     font-size: 2rem;
-    font-weight: 700;
-    background-image: linear-gradient(45deg, #784ff7, #4fc7f7);
-    background-size: 200% 200%;
-    height: 3rem;
-    width: 230px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.7rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
 `;
 
-export const ContainerButtons = styled.div`
-    display: flex;
-    gap: 1rem;
+export const SkillsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 600px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
 `;
+
 export const ButtonProfile = styled.button`
-    text-transform: uppercase;
-    width: 150px;
-    margin-top: 1rem;
-    height: 2.5rem;
-    font-size: 0.7rem;
-    font-weight: bold;
-    color: var(--primary-text-color);
-    border-radius: 0.7rem;
-    background-image: linear-gradient(45deg, #784ff7, #4fc7f7);
-    background-size: 200% 200%;
-    border: 1px solid var(--primary-text-color);
-    animation: ${GradientAnimation} 4s ease infinite;
-    cursor: pointer;
-    transition: 0.4s;
-    &:hover {
-        filter: drop-shadow(0 0 0.7rem #fff);
-    }
+  padding: 0.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
 `;
 
-// Estiliza o mouse
+export const StatusSection = styled.section`
+  flex: 1;
+  position: relative;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+  }
+`;
+
 export const MouseLight = styled.div`
-    opacity: 0;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background-color: #2e3efa8f;
-    border-radius: 50%;
-    filter: blur(30px) drop-shadow(0 0 5px #2e3efa);
-
-    pointer-events: none;
-    display: ${(props) => (props.show ? "block" : "none")};
-    /* Definindo a posição com base nas coordenadas passadas */
-    left: ${(props) => props.x - 25}px;
-    top: ${(props) => props.y - 25}px;
-    transition: left 0.1s ease, top 0.1s ease; /* Efeito de transição suave */
-    &:hover {
-        filter: drop-shadow(0 0 20px #2e3efa); /* Ajuste conforme necessário */
-    }
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(79, 146, 247, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  left: ${props => props.x}px;
+  top: ${props => props.y}px;
+  opacity: ${props => props.show ? 1 : 0};
+  transition: opacity 0.3s ease;
 `;
 
-export const ContainerStatus = styled.div`
-    position: relative;
-    cursor: none;
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    width: 500px;
-    height: 350px;
-    border-radius: 1rem;
-    padding: 2rem;
-    gap: 1rem;
-    color: var(--secondary-text-color);
-    background-color: #ffffffbd;
-    transition: filter 0.3s; /* Adicionamos uma transição para suavizar o efeito */
-    &:hover ${MouseLight} {
-        display: block;
-        opacity: 1;
-    }
-`;
+export const TittleStatus = styled.h2`
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #4F92F7;
 
-export const TittleStatus = styled.h4`
-    font-size: 2rem;
-    color: var(--main-color);
-    text-shadow: 2px 2px 3px #000;
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const DescriptionStatus = styled.p`
-    font-size: 1.2rem;
-    height: 100px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const ProgressBar = styled.div`
-    width: 100%;
-    background-color: #ddd;
-    height: 20px;
-    border-radius: 10px;
-    margin-top: 10px;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+
+  @media (max-width: 480px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const ProgressFill = styled.div`
-    background-image: linear-gradient(30deg, #70ffba, #28b263);
-    background-size: 200% 200%;
-    height: 100%;
-    border-radius: 10px;
-    animation: ${GradientAnimation} 4s ease infinite;
-    width: ${({ $percentage }) =>
-        $percentage}%; // Usando $percentage em vez de percentage
+  width: ${props => props.$percentage}%;
+  height: 100%;
+  background: linear-gradient(90deg, #4F92F7, #784FF7);
+  border-radius: 4px;
+  transition: width 0.5s ease;
 `;
 
 export const LinkProject = styled.a`
-    text-decoration: none;
-    color: white;
-    width: 150px;
-    height: 40px;
-    display: flex;
-    border-radius: 1rem;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: #4F92F7;
+  color: #1a1a1a;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: #784FF7;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
     justify-content: center;
-    background: linear-gradient(45deg, #784ff7, #4fc7f7);
-    background-size: 200% 200%;
-    text-decoration: none;
-    font-size: 1rem;
-    margin-right: 1rem;
-    gap: 0.3rem;
-    animation: ${GradientAnimation} 2s ease infinite;
-    transition: 0.5s;
-    &:hover {
-        filter: drop-shadow(0 0 0.7rem #fff);
-        background-color: var(--quaternary-color);
-    }
+  }
 `;
-export const ContainerExpSkills = styled.div`
-    display: flex;
-    margin: 1rem;
-    gap: 2rem;
+
+export const ExperienceSection = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
 export const ContainerExpProf = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 100%;
-    padding: 1rem;
-    border-radius: 1rem;
-    gap: 0.5rem;
-    background-color: #4f5df78a;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+  }
 `;
 
-export const TitleExpSkills = styled.h4`
-    display: flex;
-    gap: 0.5rem;
-    font-size: 1.5rem;
+export const TitleExpSkills = styled.h3`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #4F92F7;
+
+  @media (max-width: 480px) {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 export const DetailsEvent = styled.details`
-    list-style: none;
-    width: 100%;
-    & > summary {
-        text-transform: uppercase;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-        font-size: 1rem;
-        font-weight: bold;
-        width: 100%;
-        height: 30px;
-        border-radius: 1rem;
-        background-image: linear-gradient(45deg, #784ff7, #4fc7f7);
-        background-size: 200% 200%;
-        animation: ${GradientAnimation} 4s ease infinite;
-        cursor: pointer;
-        transition: 0.4s;
-        &:hover {
-            filter: drop-shadow(0 0 0.7rem #fff);
-        }
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+
+  summary {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
     }
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 1rem;
+
+    summary {
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
+  }
 `;
 
 export const ContainerExpSkillsDescription = styled.div`
-    display: flex;
-    flex-direction: column;
-    text-transform: uppercase;
-    gap: 1rem;
-    font-size: 1rem;
-    margin-left: 1rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    width: 90%;
-    color: var(--secondary-text-color);
-    margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+
+  p {
     margin-bottom: 0.5rem;
-    background-color: #ffffffbd;
-    & > p {
-        & > span {
-            font-weight: bold;
-        }
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    word-break: break-word;
+
+    span {
+      color: #4F92F7;
+      font-weight: 600;
     }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.8rem;
+  }
 `;
 
-export const PositionJob = styled.p`
-    font-weight: bold;
+export const PositionJob = styled.h4`
+  font-size: 1.1rem;
+  color: #784FF7;
+  margin-bottom: 1rem;
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
 `;

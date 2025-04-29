@@ -1,20 +1,26 @@
 import Home from "./pages/Home";
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from "./components/Navbar";
 import { GlobalStyles } from "./styles/GlobalStyle";
 import WhatsAppButton from "./components/WhatsAppButton";
+import Loading from "./components/Loading";
 
 function App() {
     return (
-        <Router>
-            <GlobalStyles />
-            <Navbar />
-            <WhatsAppButton />
-            <Routes>
-                <Route path="/" element={<Home />} />
-            </Routes>
-        </Router>
+        <HelmetProvider>
+            <Router>
+                <GlobalStyles />
+                <Navbar />
+                <WhatsAppButton />
+                <Suspense fallback={<Loading />}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                    </Routes>
+                </Suspense>
+            </Router>
+        </HelmetProvider>
     );
 }
 
