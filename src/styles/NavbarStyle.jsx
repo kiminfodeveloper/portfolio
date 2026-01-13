@@ -15,7 +15,9 @@ const GradientAnimation = keyframes`
 
 export const NavbarContainer = styled.nav`
     display: flex;
-    background-color: var(--senary-color);
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--main-color);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
     width: 100%;
     height: 90px;
     align-items: center;
@@ -51,7 +53,7 @@ export const NavLinks = styled.div`
         left: 0;
         right: 0;
         flex-direction: column;
-        background-color: var(--senary-color);
+        background-color: var(--bg-secondary);
         padding: var(--spacing-sm);
         gap: var(--spacing-sm);
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -65,10 +67,10 @@ export const StyledLink = styled(Link)`
     border-radius: 1rem;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(45deg, #784ff7, #4fc7f7);
+    background: linear-gradient(45deg, var(--secondary-color), var(--main-color));
     background-size: 200% 200%;
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--primary-text-color);
     font-size: 1rem;
     margin-right: 1rem;
     gap: 0.3rem;
@@ -97,7 +99,29 @@ export const MenuButton = styled.button`
     cursor: pointer;
     padding: var(--spacing-xs);
 
+
     @media (max-width: 768px) {
         display: block;
+    }
+`;
+
+export const LanguageButton = styled.button`
+    background: transparent;
+    border: 1px solid var(--main-color);
+    color: var(--primary-text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+
+    &:hover {
+        background: var(--main-color);
+        color: var(--tertiary-color);
+        box-shadow: 0 0 10px var(--main-color);
     }
 `;

@@ -2,24 +2,24 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
     :root {
-        /* Cores principais */
-        --main-color: #4F92F7;
+        /* Black Neon Blue Theme */
+        --main-color: #00FFFF; /* Neon Cyan */
         --primary-text-color: #fff;
-        --secondary-text-color: #000;
-        --secondary-color: #784FF7;
-        --tertiary-color: #000;
-        --quaternary-color: #4F5DF7;
-        --quinary-color: #AF4FF7;
-        --senary-color: #2E3EFA;
+        --secondary-text-color: #E0E0E0;
+        --secondary-color: #BC13FE; /* Neon Purple */
+        --tertiary-color: #000000;
+        --quaternary-color: #111111; /* Dark Gray */
+        --quinary-color: #FF00FF; /* Neon Pink */
+        --senary-color: #2E3EFA; /* Blue */
         
         /* Cores de fundo */
-        --bg-primary: #ffffff;
-        --bg-secondary: #f5f5f5;
-        --bg-accent: #4f5df78a;
+        --bg-primary: #050505; /* Deep Black */
+        --bg-secondary: #0F0F0F; /* Dark Gray */
+        --bg-accent: rgba(0, 255, 255, 0.1);
         
         /* Cores de texto */
-        --text-primary: #333333;
-        --text-secondary: #666666;
+        --text-primary: #FFFFFF;
+        --text-secondary: #CCCCCC;
         --text-light: #ffffff;
         
         /* Breakpoints */
@@ -113,7 +113,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     ::-webkit-scrollbar-thumb {
-        background-color: var(--senary-color);
+        background-color: var(--main-color);
         border-radius: 1rem;
     }
 

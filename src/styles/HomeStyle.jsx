@@ -26,8 +26,8 @@ const GradientAnimation = keyframes`
 export const MainContainer = styled.main`
   min-height: 100vh;
   padding: 2rem;
-  background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
-  color: #ffffff;
+  background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  color: var(--primary-text-color);
   animation: ${FadeIn} 0.8s ease-out;
 
   @media (max-width: 768px) {
@@ -67,17 +67,24 @@ export const ProfileSection = styled.section`
   }
 `;
 
+const NeonPulse = keyframes`
+  0% { box-shadow: 0 0 10px var(--main-color); }
+  50% { box-shadow: 0 0 25px var(--main-color), 0 0 50px var(--secondary-color); }
+  100% { box-shadow: 0 0 10px var(--main-color); }
+`;
+
 export const ContainerImage = styled.div`
   width: 200px;
   height: 200px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid #4F92F7;
-  box-shadow: 0 0 20px rgba(79, 146, 247, 0.3);
+  border: 3px solid var(--main-color);
+  animation: ${NeonPulse} 3s infinite;
   transition: transform 0.3s ease;
 
   &:hover {
     transform: scale(1.05);
+    border-color: var(--secondary-color);
   }
 
   @media (max-width: 768px) {
@@ -150,7 +157,7 @@ export const ContainerName = styled.div`
 export const NameText = styled.h1`
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
-  background: linear-gradient(45deg, #4F92F7, #784FF7);
+  background: linear-gradient(45deg, var(--main-color), var(--secondary-color));
   background-size: 200% 200%;
   animation: ${GradientAnimation} 3s ease infinite;
   -webkit-background-clip: text;
@@ -222,7 +229,7 @@ export const MouseLight = styled.div`
   position: absolute;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(79, 146, 247, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--main-color) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -235,7 +242,7 @@ export const MouseLight = styled.div`
 export const TittleStatus = styled.h2`
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #4F92F7;
+  color: var(--main-color);
 
   @media (max-width: 480px) {
     font-size: 1.5rem;
@@ -270,7 +277,7 @@ export const ProgressBar = styled.div`
 export const ProgressFill = styled.div`
   width: ${props => props.$percentage}%;
   height: 100%;
-  background: linear-gradient(90deg, #4F92F7, #784FF7);
+  background: linear-gradient(90deg, var(--main-color), var(--secondary-color));
   border-radius: 4px;
   transition: width 0.5s ease;
 `;
@@ -280,7 +287,7 @@ export const LinkProject = styled.a`
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.5rem;
-  background: #4F92F7;
+  background: var(--main-color);
   color: #1a1a1a;
   border-radius: 8px;
   text-decoration: none;
@@ -289,7 +296,7 @@ export const LinkProject = styled.a`
   white-space: nowrap;
 
   &:hover {
-    background: #784FF7;
+    background: var(--secondary-color);
     transform: translateY(-2px);
   }
 
@@ -330,7 +337,7 @@ export const TitleExpSkills = styled.h3`
   gap: 0.5rem;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #4F92F7;
+  color: var(--main-color);
 
   @media (max-width: 480px) {
     font-size: 1.3rem;
@@ -381,7 +388,7 @@ export const ContainerExpSkillsDescription = styled.div`
     word-break: break-word;
 
     span {
-      color: #4F92F7;
+      color: var(--main-color);
       font-weight: 600;
     }
   }
@@ -393,7 +400,7 @@ export const ContainerExpSkillsDescription = styled.div`
 
 export const PositionJob = styled.h4`
   font-size: 1.1rem;
-  color: #784FF7;
+  color: var(--secondary-color);
   margin-bottom: 1rem;
 
   @media (max-width: 480px) {

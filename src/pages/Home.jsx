@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { FaLinkedin, FaGithub, FaCode, FaBriefcase } from "react-icons/fa";
 import {
   MainContainer,
@@ -30,12 +31,8 @@ import {
 import profileImage from "../assets/kevyn.jpeg";
 
 const Home = () => {
-  const [statusInfo, setStatusInfo] = useState({
-    title: "Selecione uma habilidade",
-    description: "Clique em uma das habilidades para ver mais detalhes",
-    percentage: 0,
-  });
-
+  const { t } = useTranslation();
+  const [selectedSkill, setSelectedSkill] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [showMouseLight, setShowMouseLight] = useState(false);
 
@@ -60,28 +57,30 @@ const Home = () => {
     { name: "Figma", percentage: 65 },
   ];
 
+  const statusInfo = selectedSkill ? {
+    title: selectedSkill.name,
+    description: `${t('skill_experience_prefix')}${selectedSkill.name}${t('skill_experience_suffix')}`,
+    percentage: selectedSkill.percentage,
+  } : {
+    title: t('select_skill'),
+    description: t('skill_details_prompt'),
+    percentage: 0,
+  };
+
   const experiences = [
     {
       company: "Giga Byte",
-      position: "Desenvolvedor Frontend",
-      period: "2022 - Presente",
-      description: "Desenvolvimento de interfaces modernas e responsivas utilizando React e Styled Components.",
+      position: t('role_frontend'),
+      period: "2022 - Present", 
+      description: t('frontend_desc'),
     },
     {
       company: "Microlins",
-      position: "Instrutor de Informática",
+      position: t('role_instructor'),
       period: "2021 - 2022",
-      description: "Ministração de aulas de programação e desenvolvimento web para alunos iniciantes.",
+      description: t('instructor_desc'),
     },
   ];
-
-  const handleSkillClick = (skill) => {
-    setStatusInfo({
-      title: skill.name,
-      description: `Experiência em ${skill.name} com foco em desenvolvimento web moderno e responsivo.`,
-      percentage: skill.percentage,
-    });
-  };
 
   return (
     <MainContainer>
@@ -91,12 +90,15 @@ const Home = () => {
             <ImageProfile src={profileImage} alt="Profile" />
           </ContainerImage>
           <ContainerName>
-            <NameText>Seu Nome</NameText>
+            <NameText>{t('hero_title')}</NameText>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '1.1rem' }}>
+              {t('hero_subtitle')}
+            </p>
             <SkillsGrid>
               {skills.map((skill) => (
                 <ButtonProfile
                   key={skill.name}
-                  onClick={() => handleSkillClick(skill)}
+                  onClick={() => setSelectedSkill(skill)}
                 >
                   {skill.name}
                 </ButtonProfile>
@@ -137,7 +139,7 @@ const Home = () => {
             <ProgressFill $percentage={statusInfo.percentage} />
           </ProgressBar>
           <LinkProject href="#" target="_blank" rel="noopener noreferrer">
-            Ver Projetos
+            {t('view_projects')}
           </LinkProject>
         </StatusSection>
       </HomeContent>
@@ -145,7 +147,7 @@ const Home = () => {
       <ExperienceSection>
         <ContainerExpProf>
           <TitleExpSkills>
-            <FaCode /> Experiência
+            <FaCode /> {t('experience')}
           </TitleExpSkills>
           {experiences.map((exp, index) => (
             <DetailsEvent key={index}>
@@ -153,10 +155,10 @@ const Home = () => {
               <ContainerExpSkillsDescription>
                 <PositionJob>{exp.position}</PositionJob>
                 <p>
-                  <span>Período:</span> {exp.period}
+                  <span>{t('period')}:</span> {exp.period}
                 </p>
                 <p>
-                  <span>Descrição:</span> {exp.description}
+                  <span>{t('description')}:</span> {exp.description}
                 </p>
               </ContainerExpSkillsDescription>
             </DetailsEvent>
@@ -165,19 +167,19 @@ const Home = () => {
 
         <ContainerExpProf>
           <TitleExpSkills>
-            <FaBriefcase /> Formação
+            <FaBriefcase /> {t('education')}
           </TitleExpSkills>
           <DetailsEvent>
             <summary>Udemy</summary>
             <ContainerExpSkillsDescription>
               <p>
-                <span>Curso:</span> Desenvolvimento Web Completo
+                <span>{t('course')}:</span> {t('course_web')}
               </p>
               <p>
-                <span>Conteúdo:</span> HTML, CSS, JavaScript, Bootstrap, ReactJS
+                <span>{t('content')}:</span> {t('course_content')}
               </p>
               <p>
-                <span>Conclusão:</span> 2023
+                <span>{t('completion')}:</span> 2023
               </p>
             </ContainerExpSkillsDescription>
           </DetailsEvent>
